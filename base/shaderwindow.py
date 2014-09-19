@@ -1,9 +1,8 @@
 __author__ = 'akirayu101'
 
-from PyQt5.QtGui import (QOpenGLShader, QOpenGLShaderProgram, QVector4D)
+from PyQt5.QtGui import QOpenGLShaderProgram
 from OpenGL import GL
 from base.openglwindow import OpenGLWindow
-from math import sin, cos
 
 
 class ShaderWindow(OpenGLWindow):
