@@ -2,7 +2,6 @@ from PyQt5.QtGui import (
     QGuiApplication, QSurfaceFormat, QOpenGLShader, QVector4D)
 from base.shaderwindow import ShaderWindow
 from OpenGL import GL
-from math import (sin, cos)
 
 
 class TessellationTriangle(ShaderWindow):
