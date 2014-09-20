@@ -1,6 +1,6 @@
 __author__ = 'akirayu101'
 
-from PyQt5.QtGui import QOpenGLShaderProgram
+from PyQt5.QtGui import QOpenGLShaderProgram, QMatrix4x4
 from OpenGL import GL
 from base.openglwindow import OpenGLWindow
 
@@ -12,6 +12,14 @@ class ShaderWindow(OpenGLWindow):
 
         self.m_program = 0
         self.m_vao = None
+
+        self.m_model_matrix = QMatrix4x4()
+        self.m_view_matrix = QMatrix4x4()
+        self.m_projection_matrix = QMatrix4x4()
+
+    @property
+    def m_mvp_matrix(self):
+        return self.m_projection_matrix * self.m_view_matrix * self.m_model_matrix
 
     def initialize_data(self):
         pass

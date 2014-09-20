@@ -28,6 +28,7 @@ class TeaPot(ShaderWindow):
         self.m_vertex_index = self.m_program.attributeLocation("m_vertex")
         self.m_color_index = self.m_program.attributeLocation("m_color")
         self.m_norm_index = self.m_program.attributeLocation("m_norm")
+        self.m_mvp_index = self.m_program.uniformLocation("m_mvp")
 
     def enableVAA(self):
         GL.glEnableVertexAttribArray(self.m_vertex_index)
@@ -45,6 +46,8 @@ class TeaPot(ShaderWindow):
         self.m_program.setAttributeValue(
             self.m_color_index, QVector4D(1.0, 0.0, 0.0, 0.0))
         self.m_program.bind()
+
+        self.m_program.setUniformValue(self.m_mvp_index, self.m_mvp_matrix)
 
         GL.glDrawArrays(GL.GL_TRIANGLES, 0, len(self.m_vertices))
         self.m_program.release()

@@ -1,12 +1,14 @@
 #version 410 core
-layout (location = 1) in vec4 m_norm;
-layout (location = 2) in vec4 m_vertex;
-layout (location = 4) in vec4 m_color;
+in vec4 m_norm;
+in vec4 m_vertex;
+in vec4 m_color;
+
+uniform mat4 m_mvp;
 out vec4 color;
 
 void main()
 {
-    gl_Position = m_vertex;
+    gl_Position = m_mvp * m_vertex;
     color = m_color;
     m_norm;
 }
