@@ -13,7 +13,7 @@ class TeaPot(ShaderWindow):
         super(TeaPot, self).__init__()
 
     def initialize_data(self):
-        self.m_vertices, _ = load_obj("materials/wt_teapot.obj")
+        self.m_vertices, self.m_norms = load_obj("materials/wt_teapot.obj")
 
         self.m_vertex_index = -1
         self.m_frame = 1
@@ -27,9 +27,11 @@ class TeaPot(ShaderWindow):
     def bind_attribute_localtion(self):
         self.m_vertex_index = self.m_program.attributeLocation("m_vertex")
         self.m_color_index = self.m_program.attributeLocation("m_color")
+        self.m_norm_index = self.m_program.attributeLocation("m_norm")
 
     def enableVAA(self):
         GL.glEnableVertexAttribArray(self.m_vertex_index)
+        GL.glEnableVertexAttribArray(self.m_norm_index)
         # GL.glEnableVertexAttribArray(self.m_color_index)
 
     def render(self):
@@ -39,6 +41,7 @@ class TeaPot(ShaderWindow):
         GL.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT)
 
         self.m_program.setAttributeArray(self.m_vertex_index, self.m_vertices)
+        self.m_program.setAttributeArray(self.m_norm_index, self.m_norms)
         self.m_program.setAttributeValue(
             self.m_color_index, QVector4D(1.0, 0.0, 0.0, 0.0))
         self.m_program.bind()
