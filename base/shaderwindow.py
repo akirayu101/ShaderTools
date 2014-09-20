@@ -1,6 +1,7 @@
 __author__ = 'akirayu101'
 
 from PyQt5.QtGui import QOpenGLShaderProgram, QMatrix4x4
+from PyQt5.QtCore import Qt
 from OpenGL import GL
 from base.openglwindow import OpenGLWindow
 
@@ -55,3 +56,16 @@ class ShaderWindow(OpenGLWindow):
     def render(self):
 
         pass
+
+    def keyPressEvent(self, event):
+        key = event.key()
+        if key == Qt.Key_Up:
+            self.m_model_matrix.rotate(2.0, 1.0, 0.0, 0.0)
+        elif key == Qt.Key_Down:
+            self.m_model_matrix.rotate(-2.0, 1.0, 0.0, 0.0)
+        elif key == Qt.Key_Left:
+            self.m_model_matrix.rotate(2.0, 0.0, 1.0, 0.0)
+        elif key == Qt.Key_Right:
+            self.m_model_matrix.rotate(-2.0, 0.0, 1.0, 0.0)
+        else:
+            pass
